@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="js/lodash.js"></script>
+    <script src="js/jquery-1.9.0.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+<div id="box"></div>
+<div id="popup_box"></div>
+<script type="text/html" id="preview">
+    <header>
+        <button onclick="changeToEdit();">preview</button>
+    </header>
+    <section>
+        <ul>
+            <% for(var i = 0; i < type.length; i++){  %>
+            <li>
+                <%- type[i] %>
+                <span></span>
+                <button onclick="removeFormElements(<%- i%>)">-</button>
+            </li>
+            <% }; %>
+        </ul>
+    </section>
+    <footer>
+        <button onclick="renderPopup();">add</button>
+    </footer>
+</script>
+<script type="text/html" id="edit">
+    <header>
+        <button onclick="changeToPreview();">edit</button>
+    </header>
+    <section>
+        <ul>
+            <% _.forEach(type , function(type){ %>
+            <li>
+                <%- type %>
+                <span></span>
+            </li>
+            <% }); %>
+        </ul>
+    </section>
+    <footer>
+        <button>save</button>
+    </footer>
+</script>
+<script type="text/html" id="formPopup">
+    <div id="popup">
+        <form action="">
+            <input type="radio" name="type" value="text"> text <br>
+            <input type="radio" name="type" value="date"> date <br>
+            <button type="button" onclick="addFormElements()">determine</button>
+            <span onclick="chosePopup();">×</span>
+        </form>
+    </div>
+</script>
+</body>
+</html>
